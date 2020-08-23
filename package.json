@@ -1,0 +1,20 @@
+{
+  "name": "djo_lan_bot",
+  "version": "1.0.0",
+  "description": "The official bot for the DJO LAN Party.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djoamersfoort/LAN-Discord-Bot.git"
+  },
+  "author": "WIPEAUT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djoamersfoort/LAN-Discord-Bot/issues"
+  },
+  "homepage": "https://github.com/djoamersfoort/LAN-Discord-Bot#readme"
+}
