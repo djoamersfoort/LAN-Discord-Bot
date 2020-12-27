@@ -3,10 +3,13 @@ const config = require("./config.json");
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const status = require("./status.js");
+const getStatus = require("./status.js");
+const makeEmbed = require("./embed.js");
 
 let message = null;
 let channel = null;
+
+let oldList = [];
 
 client.on("ready", async () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -21,7 +24,8 @@ client.on("ready", async () => {
 });
 
 function update() {
-  status(embed => {
+  getStatus(servers => {
+    const embed = makeEmbed(servers);
     message.edit("", {embed: embed});
   });
 }
