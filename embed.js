@@ -1,4 +1,5 @@
 const {MessageEmbed} = require("discord.js");
+const config = require("./config.json");
 
 function getTimeSince(date) {
   const diff = Math.floor((new Date() - date) / 1000);
@@ -21,20 +22,19 @@ module.exports = function(states) {
   const embed = new MessageEmbed()
     .setTitle("DJO Gameserver Lijst")
     .setColor("PURPLE")
-    .setDescription("Speel mee op **mc.djoamersfoort.nl**")
+    .setDescription("Voel je vrij om te joinen!")
     .setFooter(dateString)
+
     .addFields(states.map(s => {
-      const online = s.status !== null;
+      const name = `${s.icon} ${s.name}`;
+      let value = `*${s.ip}*\n`;
 
-      let name = `${online ? s.icon : "❌"} ${s.name}`;
-      let value;
-
-      if(online) {
-        value = "**Ping:** " + s.status.ping + "ms\n";
+      if(s.type === "online") {
+        value += "**Ping:** " + s.status.ping + "ms\n";
         value += `**Spelers:** ${s.status.players.length}/${s.status.maxplayers || s.maxPlayers}\n`;
         value += s.status.players.map(p => ` • ${p.name} *(${getTimeSince(p.time)})*`).join("\n");
-      } else {
-        value = "Server is offline.";
+      } else if(s.type === "offline") {
+        value = "*Server is offline.*";
       }
 
       return {

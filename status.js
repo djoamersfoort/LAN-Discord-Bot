@@ -7,7 +7,14 @@ module.exports = function(callback) {
   const servers = require("./servers.json");
 
   servers.forEach(server => {
+      if(server.server === undefined) {
+        server.type = "static";
+        states.push(server);
+        return;
+      }
+
       query(server.server).then(state => {
+        server.type = "online";
         server.status = state;
         states.push(server);
 
@@ -38,7 +45,7 @@ module.exports = function(callback) {
           callback(states);
         }
       }).catch(err => {
-        server.status = null;
+        server.type = "offline";
         states.push(server);
 
         if(states.length === servers.length) {
