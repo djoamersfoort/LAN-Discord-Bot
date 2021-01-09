@@ -20,19 +20,15 @@ module.exports = function(callback) {
 
         Object.keys(recent).forEach(p => {
           if(server.status.players.map(p => p.name).indexOf(p) === -1) {
-            console.log("deleting");
             delete recent[p];
           }
         });
 
         server.status.players.map(p => p.name).forEach(p => {
           if(!recent.hasOwnProperty(p)) {
-            console.log("creating");
             recent[p] = new Date();
           }
         });
-
-        console.log(recent);
 
         server.status.players = server.status.players
           .filter(p => (p.name !== undefined))

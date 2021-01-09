@@ -23,7 +23,7 @@ module.exports = function(states) {
     .setTitle("DJO Gameserver Lijst")
     .setColor("PURPLE")
     .setDescription("Voel je vrij om te joinen!")
-    .setFooter(dateString)
+    .setTimestamp(new Date().toISOString())
 
     .addFields(states.map(s => {
       const name = `${s.icon} ${s.name}`;
