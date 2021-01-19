@@ -13,6 +13,7 @@ function getTimeSince(date) {
   const seconds_s = seconds + "s";
 
   const out = (hours > 0 ? hours_s : "") + (minutes > 0 ? minutes_s : "") + (seconds > 0 ? seconds_s : "");
+
   return out === "" ? "joined" : out;
 }
 

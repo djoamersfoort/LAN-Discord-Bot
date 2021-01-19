@@ -3,7 +3,6 @@ let recent = {};
 
 module.exports = function(callback) {
   const states = [];
-
   const servers = require("./servers.json");
 
   servers.forEach(server => {
@@ -13,27 +12,31 @@ module.exports = function(callback) {
         return;
       }
 
+      if(!recent.hasOwnProperty(server.name)) {
+        recent[server.name] = {};
+      }
+
       query(server.server).then(state => {
         server.type = "online";
         server.status = state;
         states.push(server);
 
-        Object.keys(recent).forEach(p => {
+        Object.keys(recent[server.name]).forEach(p => {
           if(server.status.players.map(p => p.name).indexOf(p) === -1) {
-            delete recent[p];
+            delete recent[server.name][p];
           }
         });
 
         server.status.players.map(p => p.name).forEach(p => {
-          if(!recent.hasOwnProperty(p)) {
-            recent[p] = new Date();
+          if(!recent[server.name].hasOwnProperty(p)) {
+            recent[server.name][p] = new Date();
           }
         });
 
         server.status.players = server.status.players
           .filter(p => (p.name !== undefined))
           .map(p => {
-            p.time = recent[p.name];
+            p.time = recent[server.name][p.name];
             return p;
           });
 

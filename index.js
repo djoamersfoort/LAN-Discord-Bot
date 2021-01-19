@@ -8,7 +8,7 @@ client.on("ready", async () => {
   client.user.setPresence({activity: {name: "with game servers"}, status: "dnd"});
 
   require("./server/index.js")(client);
-  require("./games/index.js")(client);
+  // require("./games/index.js")(client);
 });
 
 client.login(config.token);
