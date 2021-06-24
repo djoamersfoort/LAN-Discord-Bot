@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/djoamersfoort/LAN-Discord-Bot/issues"
   },
-  "homepage": "https://github.com/djoamersfoort/LAN-Discord-Bot#readme"
+  "homepage": "https://github.com/djoamersfoort/LAN-Discord-Bot#readme",
+  "dependencies": {
+    "discord.js": "12.3.1",
+    "gamedig": "2.0.22"
+  }
 }
