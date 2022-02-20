@@ -7,6 +7,7 @@ const data = require("./data.js");
 // globals
 let message;
 let channel;
+let current = 0;
 
 // imports
 const Discord = require("discord.js");
@@ -53,6 +54,18 @@ function update() {
     getStatus(servers => {
       const embed = makeEmbed(servers);
       message.edit("", {embed: embed});
+
+      current += 1;
+      if (typeof servers[current] === "undefined") current = 0;
+
+      let quickString = `${servers[current].name} on ${servers[current].ip}`;
+      if (servers[current].type === "online") {
+        quickString += ` - Spelers ${s.status.players.length}/${s.status.maxplayers || s.maxPlayers}`;
+      } else if (servers[current].type === "offline") {
+        quickString += " - is offline!";
+      }
+
+      client.user.setPresence({activity: {name: quickString}, status: "dnd"});
     });
   } catch(err) {
     console.error("Failed to catch servers!", err);
