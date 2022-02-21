@@ -1,5 +1,4 @@
 const fs = require("fs");
-const util = require("util");
 
 // set or get a key from the data file
 // using sync because fs is actually garbage

@@ -1,5 +1,4 @@
 const {MessageEmbed} = require("discord.js");
-const config = require("./config.json");
 
 // function to get a "time since" value
 function getTimeSince(date) {
@@ -24,9 +23,6 @@ function getTimeSince(date) {
 
 // main exports function
 module.exports = function(states) {
-  // get the current datestring in "normal" format
-  const dateString = new Date().toISOString().replace(/T/, " ").replace(/\..+/, "");
-
   // build the embed using the discord embed builder
   const embed = new MessageEmbed()
     .setTitle("DJO Gameserver Lijst")

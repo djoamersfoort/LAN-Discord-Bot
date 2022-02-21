@@ -54,7 +54,7 @@ module.exports = function(callback) {
       if(states.length === servers.length) {
         callback(states);
       }
-    }).catch(err => {
+    }).catch(() => {
       // the server is offline!
       server.type = "offline";
       states.push(server);
